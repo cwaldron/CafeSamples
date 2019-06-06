@@ -1,2 +1,2 @@
 # CafeSamples
-Sample application incorporation CafeLib
+Sample application incorporating CafeLib
