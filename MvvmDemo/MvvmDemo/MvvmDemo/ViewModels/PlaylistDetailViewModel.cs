@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace MvvmDemo.ViewModels
 {
-    public class PlaylistDetailViewModel : BaseViewModel<PlaylistDetailPage>
+    public class PlaylistDetailViewModel : BaseViewModel
     {
         public PlaylistDetailViewModel(IServiceResolver resolver)
             :base(resolver)

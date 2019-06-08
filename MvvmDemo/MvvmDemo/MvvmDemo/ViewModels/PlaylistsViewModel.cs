@@ -2,12 +2,11 @@
 using System.Windows.Input;
 using CafeLib.Core.IoC;
 using CafeLib.Mobile.ViewModels;
-using MvvmDemo.Views;
 using Xamarin.Forms;
 
 namespace MvvmDemo.ViewModels
 {
-    public class PlaylistsViewModel : BaseViewModel<PlaylistsPage>
+    public class PlaylistsViewModel : BaseViewModel
     {
         #region Constructor
 
@@ -70,7 +69,6 @@ namespace MvvmDemo.ViewModels
             var newPlaylist = "Playlist " + (Playlists.Count + 1);
             var vm = Resolver.Resolve<PlaylistDetailViewModel>();
             vm.Title = newPlaylist;
-            var p = vm.ResolvePage();
             Playlists.Add(vm);
             Title = $"{Playlists.Count} Playlists";
         }

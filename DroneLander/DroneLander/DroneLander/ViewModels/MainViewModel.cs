@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace DroneLander.ViewModels
 {
-    public class MainViewModel : BaseViewModel<MainPage>
+    public class MainViewModel : BaseViewModel
     {
         private readonly IAudioService _audioService;
 
