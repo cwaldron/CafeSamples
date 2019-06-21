@@ -4,9 +4,9 @@ using Xamarin.Forms;
 
 namespace MvvmDemo.Views
 {
-    public partial class PlaylistsPage : BaseContentPage<PlaylistsViewModel>
+    public partial class PlaylistPage : BaseContentPage<PlaylistViewModel>
     {
-        public PlaylistsPage()
+        public PlaylistPage()
         {
             InitializeComponent();
         }

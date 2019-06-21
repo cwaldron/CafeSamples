@@ -23,8 +23,10 @@ namespace MvvmDemo
         /// </summary>
         public override void Configure()
         {
-            Registry.AddSingleton<PlaylistsViewModel, PlaylistsViewModel>();
-            Registry.AddTransient<PlaylistDetailViewModel, PlaylistDetailViewModel>();
+            Registry
+                .AddScoped<EnterUserViewModel>()
+                .AddScoped<PlaylistViewModel>()
+                .AddTransient<PlaylistDetailViewModel>();
         }
 
         protected override void OnStart()
@@ -32,7 +34,7 @@ namespace MvvmDemo
 		    try
 		    {
                 // Initialize the root page.
-                MainPage = _registry.GetResolver().Resolve<PlaylistsViewModel>().AsNavigationPage();
+                MainPage = _registry.GetResolver().Resolve<EnterUserViewModel>().AsNavigationPage();
             }
             catch (Exception e)
 		    {

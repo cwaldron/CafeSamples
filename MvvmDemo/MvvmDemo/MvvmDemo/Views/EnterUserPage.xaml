@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentPage x:TypeArguments="viewModels:EnterUserViewModel"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:MvvmDemo.Converters;assembly=MvvmDemo"
+             xmlns:views="clr-namespace:CafeLib.Mobile.Views;assembly=CafeLib.Mobile"
+             xmlns:viewModels="clr-namespace:MvvmDemo.ViewModels;assembly=MvvmDemo"
+             mc:Ignorable="d"
+             x:Class="MvvmDemo.Views.EnterUserPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolToOpacityConverter x:Key="BoolToOpacity" FalseValue="0.5"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Entry Grid.Row="2" Grid.ColumnSpan="3" Text="{Binding UserName}"  
+				   x:Name="UserNameEntry" Keyboard="Email" AutomationId="UserNameEntry" HorizontalOptions="FillAndExpand">
+            </Entry>
+
+            <Button Grid.Row="3" Grid.Column="2" Style="{DynamicResource NextButtonStyle}" Command="{Binding NavigateToPinEntryPageCommand}" 
+                    x:Name="NextButton" Text="Next" Opacity="{Binding CanChangePage, Converter={StaticResource BoolToOpacity}}" AutomationId="NavigateToPinEntryButton"/>
+
+        </Grid>
+    </ContentPage.Content>
+</views:BaseContentPage>

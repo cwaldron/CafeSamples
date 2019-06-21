@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <views:BaseContentPage 
     Title="{Binding Title}"
-    x:TypeArguments="viewModels:PlaylistsViewModel" 
+    x:TypeArguments="viewModels:PlaylistViewModel" 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:CafeLib.Mobile.Views;assembly=CafeLib.Mobile"
     xmlns:viewModels="clr-namespace:MvvmDemo.ViewModels;assembly=MvvmDemo"
-    x:Class="MvvmDemo.Views.PlaylistsPage">
+    x:Class="MvvmDemo.Views.PlaylistPage">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" 
@@ -16,7 +16,7 @@
 
     <ListView
         SelectedItem = "{Binding SelectedPlaylist, Mode=TwoWay}"
-        ItemsSource="{Binding Playlists}"
+        ItemsSource="{Binding Playlist}"
     >
         <ListView.ItemTemplate>
             <DataTemplate>

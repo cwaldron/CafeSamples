@@ -6,30 +6,30 @@ using Xamarin.Forms;
 
 namespace MvvmDemo.ViewModels
 {
-    public class PlaylistsViewModel : BaseViewModel
+    public class PlaylistViewModel : BaseViewModel<string>
     {
         #region Constructor
 
         /// <summary>
         /// Constructor of the list of play list items view model.
         /// </summary>
-        public PlaylistsViewModel(IServiceResolver resolver)
+        public PlaylistViewModel(IServiceResolver resolver)
             :base(resolver)
         {
-            Playlists = new ObservableCollection<PlaylistDetailViewModel>();
+            Playlist = new ObservableCollection<PlaylistDetailViewModel>();
             AddPlaylistCommand = new Command(AddPlaylist);
-            Title = $"{Playlists.Count} Playlists";
+            Title = $"{Playlist.Count} Playlist";
         }
 
         #endregion
 
         #region Properties
 
-        private ObservableCollection<PlaylistDetailViewModel> _playlists;
-        public ObservableCollection<PlaylistDetailViewModel> Playlists
+        private ObservableCollection<PlaylistDetailViewModel> _playlist;
+        public ObservableCollection<PlaylistDetailViewModel> Playlist
         {
-            get => _playlists;
-            set => SetValue(ref _playlists, value);
+            get => _playlist;
+            set => SetValue(ref _playlist, value);
         }
 
         #endregion
@@ -66,11 +66,11 @@ namespace MvvmDemo.ViewModels
 
         private void AddPlaylist()
         {
-            var newPlaylist = "Playlist " + (Playlists.Count + 1);
+            var newPlaylist = "Playlist " + (Playlist.Count + 1);
             var vm = Resolver.Resolve<PlaylistDetailViewModel>();
             vm.Title = newPlaylist;
-            Playlists.Add(vm);
-            Title = $"{Playlists.Count} Playlists";
+            Playlist.Add(vm);
+            Title = $"{Playlist.Count} Playlist";
         }
 
         #endregion

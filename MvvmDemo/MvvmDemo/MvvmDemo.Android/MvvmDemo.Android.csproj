@@ -43,10 +43,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CafeLib.Core">
-      <HintPath>..\..\..\..\CafeLib\Mobile\CafeLib.Mobile\bin\Debug\netstandard2.0\CafeLib.Core.dll</HintPath>
+      <HintPath>..\..\..\..\CafeLib\Core\CafeLib.Core.IoC\bin\Debug\netstandard2.0\CafeLib.Core.dll</HintPath>
     </Reference>
     <Reference Include="CafeLib.Core.IoC">
-      <HintPath>..\..\..\..\CafeLib\Mobile\CafeLib.Mobile\bin\Debug\netstandard2.0\CafeLib.Core.IoC.dll</HintPath>
+      <HintPath>..\..\..\..\CafeLib\Core\CafeLib.Core.IoC\bin\Debug\netstandard2.0\CafeLib.Core.IoC.dll</HintPath>
     </Reference>
     <Reference Include="CafeLib.Mobile">
       <HintPath>..\..\..\..\CafeLib\Mobile\CafeLib.Mobile\bin\Debug\netstandard2.0\CafeLib.Mobile.dll</HintPath>
