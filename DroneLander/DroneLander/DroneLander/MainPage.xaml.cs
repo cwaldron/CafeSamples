@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace DroneLander
 {
-    public partial class MainPage : BaseContentPage<MainViewModel>
+    public partial class MainPage : CafeContentPage<MainViewModel>
     {
         public MainPage()
         {

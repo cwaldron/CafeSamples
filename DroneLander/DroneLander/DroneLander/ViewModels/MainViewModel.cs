@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CafeLib.Core.IoC;
 using CafeLib.Mobile.ViewModels;
 using DroneLander.Common;
 using DroneLander.Models;
@@ -15,8 +14,7 @@ namespace DroneLander.ViewModels
     {
         private readonly IAudioService _audioService;
 
-        public MainViewModel(IAudioService audioService, IServiceResolver resolver)
-            :base(resolver)
+        public MainViewModel(IAudioService audioService)
         {
             _audioService = audioService;
             ActiveLandingParameters = new LandingParameters();
@@ -200,26 +198,28 @@ namespace DroneLander.ViewModels
 
         private async void ShakeLandscapeAsync()
         {
+            var mainPage = ResolvePage<MainPage>();
+
             try
             {
                 for (var i = 0; i < 8; i++)
                 {
                     await Task.WhenAll(
-                            Page.ScaleTo(1.1, 20, Easing.Linear),
-                            Page.TranslateTo(-30, 0, 20, Easing.Linear)
+                        mainPage.ScaleTo(1.1, 20, Easing.Linear),
+                        mainPage.TranslateTo(-30, 0, 20, Easing.Linear)
                         );
 
                     await Task.WhenAll(
-                            Page.TranslateTo(0, 0, 20, Easing.Linear)
+                            mainPage.TranslateTo(0, 0, 20, Easing.Linear)
                        );
 
                     await Task.WhenAll(
-                            Page.TranslateTo(0, -30, 20, Easing.Linear)
+                            mainPage.TranslateTo(0, -30, 20, Easing.Linear)
                        );
 
                     await Task.WhenAll(
-                             Page.ScaleTo(1.0, 20, Easing.Linear),
-                             Page.TranslateTo(0, 0, 20, Easing.Linear)
+                             mainPage.ScaleTo(1.0, 20, Easing.Linear),
+                             mainPage.TranslateTo(0, 0, 20, Easing.Linear)
                          );
                 }
             }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using CafeLib.Core.IoC;
+using CafeLib.Mobile.Extensions;
 using CafeLib.Mobile.Startup;
 using DroneLander.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -11,12 +13,9 @@ namespace DroneLander
     // ReSharper disable once RedundantExtendsListEntry
     public partial class App : CafeApplication
     {
-        private readonly IServiceRegistry _registry;
-
         public App(IServiceRegistry registry)
             : base(registry)
         {
-            _registry = registry;
             InitializeComponent();
         }
 
@@ -25,7 +24,7 @@ namespace DroneLander
         /// </summary>
         public override void Configure()
         {
-            Registry.AddScoped<MainViewModel, MainViewModel>();
+            Registry.AddViewModel<MainViewModel>();
         }
 
         protected override void OnStart()
@@ -33,7 +32,7 @@ namespace DroneLander
             try
             {
                 // Initialize the root page.
-                MainPage = _registry.GetResolver().Resolve<MainViewModel>().AsNavigationPage();
+                Application.Current.StartOnViewModel<MainViewModel>();
             }
             catch (Exception e)
             {
