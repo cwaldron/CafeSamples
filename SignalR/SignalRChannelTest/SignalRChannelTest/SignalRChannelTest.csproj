@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CafeLib.Core.Logging" Version="0.7.5" />
+    <PackageReference Include="CafeLib.Core.MethodBinding" Version="0.7.5" />
+    <PackageReference Include="CafeLib.Core.Runnable" Version="0.7.5" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Client" Version="2.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CafeLib.Web.SignalR">
+      <HintPath>..\..\..\..\ChrisSolutions\CafeLib\Network\CafeLib.Web.SignalR\bin\Debug\netstandard2.1\CafeLib.Web.SignalR.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
