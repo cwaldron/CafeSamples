@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CafeLib.Authorization.Tokens" Version="0.8.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server" Version="2.31.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GrpcProto\GrpcProto.csproj" />
+  </ItemGroup>
+
+</Project>
