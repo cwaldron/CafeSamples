@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using CafeLib.Aspnet.Identity;
+using CafeLib.Authorization.Identity;
 using CafeLib.Identity.Sqlite.Data;
 using CafeLib.Identity.Sqlite.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -16,7 +16,7 @@ namespace CafeLib.Identity.Sqlite.Controllers
 {
     public class AccountController : ControllerBase
     {
-        private IdentityStorage _storage;
+        private readonly IdentityStorage _storage;
 
         public AccountController(IServiceProvider serviceProvider)
             : base(serviceProvider)

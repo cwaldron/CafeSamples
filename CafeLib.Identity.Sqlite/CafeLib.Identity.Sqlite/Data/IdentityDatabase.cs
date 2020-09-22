@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using CafeLib.Aspnet.Identity;
+using CafeLib.Authorization.Identity;
 using CafeLib.Data;
 using CafeLib.Data.Sources.Sqlite;
 using CafeLib.Identity.Sqlite.Extensions;

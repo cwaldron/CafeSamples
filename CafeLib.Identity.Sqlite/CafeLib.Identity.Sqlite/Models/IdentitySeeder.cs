@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using CafeLib.Aspnet.Identity;
-using CafeLib.Aspnet.Identity.Secrets;
+using CafeLib.Authorization.Hash;
+using CafeLib.Authorization.Identity;
 using CafeLib.Data.Extensions;
-using IdentityUser = CafeLib.Aspnet.Identity.IdentityUser;
 
 namespace CafeLib.Identity.Sqlite.Models
 {
