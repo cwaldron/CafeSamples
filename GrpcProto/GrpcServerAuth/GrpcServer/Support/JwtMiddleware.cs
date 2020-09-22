@@ -3,16 +3,15 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using CafeLib.Authorization.Tokens;
+using GrpcServer.Extensions;
 using GrpcServer.Services;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
 
 namespace GrpcServer.Support
 {
     public class JwtMiddleware
     {
-        private const string Secret = "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING";
-
         private readonly RequestDelegate _next;
         private readonly AppSettings _appSettings;
 
@@ -21,10 +20,10 @@ namespace GrpcServer.Support
             {"ChrisSolutions", 1}
         };
 
-        public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings)
+        public JwtMiddleware(RequestDelegate next, IConfiguration config)
         {
             _next = next;
-            _appSettings = appSettings.Value;
+            _appSettings = config.GetAppSettings();
         }
 
         public async Task Invoke(HttpContext context, IAccountService accountService)
@@ -40,7 +39,7 @@ namespace GrpcServer.Support
         private void AttachUserToContext(HttpContext context, IAccountService accountService, string token)
         {
             var authToken = new Token(token);
-            var result = authToken.TryValidate(Secret, out var response);
+            var result = authToken.TryValidate(_appSettings.Secret, out var response);
             if (result == false) return;  // Can throw exception here as well.
             var userId = _idMap[response.Token.Claims.Single(x => x.Key == ClaimTypes.Name).Value];
 

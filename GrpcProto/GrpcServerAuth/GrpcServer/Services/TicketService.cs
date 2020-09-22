@@ -22,7 +22,6 @@ using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using GrpcServer.Data;
 using GrpcServer.Models;
-using GrpcServer.Support;
 using Ticket;
 
 namespace GrpcServer.Services
@@ -44,7 +43,6 @@ namespace GrpcServer.Services
             });
         }
 
-        [Authorize]
         public override Task<BuyTicketsResponse> BuyTickets(BuyTicketsRequest request, ServerCallContext context)
         {
             var user = (User)context.GetHttpContext().Items["User"];

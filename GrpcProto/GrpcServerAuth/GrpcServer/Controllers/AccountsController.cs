@@ -1,13 +1,12 @@
 ﻿using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 using CafeLib.Authorization.Tokens;
 using GrpcServer.Authentication;
+using GrpcServer.Extensions;
 using GrpcServer.Services;
 using GrpcServer.Support;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
 
 namespace GrpcServer.Controllers
 {
@@ -15,16 +14,13 @@ namespace GrpcServer.Controllers
     [Route("[controller]")]
     public class AccountsController : ControllerBase
     {
-        private const string Secret = "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING";
-
         private readonly IAccountService _accountService;
-        private readonly SymmetricSecurityKey _securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Secret));
+        private readonly AppSettings _appSettings;
 
-        //private readonly SymmetricSecurityKey _securityKey = new SymmetricSecurityKey(Guid.NewGuid().ToByteArray());
-
-        public AccountsController(IAccountService accountService)
+        public AccountsController(IAccountService accountService, IConfiguration config)
         {
             _accountService = accountService;
+            _appSettings = config.GetAppSettings();
         }
 
         [HttpPost("authenticate")]
@@ -54,7 +50,7 @@ namespace GrpcServer.Controllers
             return Ok(token);
         }
 
-        private static string GenerateToken(string name)
+        private string GenerateToken(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -68,7 +64,7 @@ namespace GrpcServer.Controllers
 
             var tokenBuilder = new TokenBuilder()
                 .AddClaims(claims)
-                .AddSecret(Secret)
+                .AddSecret(_appSettings.Secret)
                 .Expires(DateTime.Now.AddMinutes(60));
 
             return tokenBuilder.Build().ToString();
